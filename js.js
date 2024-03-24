@@ -3,21 +3,19 @@ const innerContainer = document.createElement("div");
 innerContainer.setAttribute("class", "grid-containers");
 const chooseGridSize = document.querySelector(".gridPicker");
 let numberOfDivs = 256;
+let calculatePixel = "20px";
 
 chooseGridSize.addEventListener("click", () => {
     let gridSize = prompt("Choose Grid");
-    numberOfDivs = gridSize*2; 
+    numberOfDivs = gridSize*gridSize; 
     calculateGrid(gridSize);
 });
 
 
-
 function calculateGrid(grid){
     deleteChildren();
-    let calculatePixel = 1000/grid;
+    calculatePixel = 1000/grid;
     calculatePixel += "px";
-    innerContainer.style.width = calculatePixel;
-    innerContainer.style.height = calculatePixel; 
     drawDivs();
 }
 function deleteChildren(){
@@ -31,6 +29,8 @@ function drawDivs(){
     for(let i=0; i<numberOfDivs; i++){
         const innerContainer = document.createElement("div");
         innerContainer.setAttribute("class", "grid-containers");
+        innerContainer.style.width = calculatePixel;
+        innerContainer.style.height = calculatePixel; 
         containerDiv.appendChild(innerContainer);
     }
 }
