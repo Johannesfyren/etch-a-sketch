@@ -2,8 +2,8 @@ const containerDiv = document.querySelector(".container");
 const innerContainer = document.createElement("div");
 innerContainer.setAttribute("class", "grid-containers");
 const chooseGridSize = document.querySelector(".gridPicker");
-let numberOfDivs = 256;
-let calculatePixel = "20px";
+let numberOfDivs = 10;
+let calculatePixel = "100px";
 
 chooseGridSize.addEventListener("click", () => {
     let gridSize = prompt("Choose Grid");
@@ -30,7 +30,8 @@ function drawDivs(){
         const innerContainer = document.createElement("div");
         innerContainer.setAttribute("class", "grid-containers");
         innerContainer.style.width = calculatePixel;
-        innerContainer.style.height = calculatePixel; 
+        innerContainer.style.height = calculatePixel;
+        
         containerDiv.appendChild(innerContainer);
     }
 }
@@ -42,7 +43,9 @@ function drawDivs(){
 containerDiv.addEventListener("mouseover", (event) =>{
     
     if (event.target.className == "grid-containers"){
-        event.target.style.background = "blue";
+        
+        event.target.style.backgroundColor = `rgb( ${randColor()}, ${randColor()}, ${randColor()})`; 
+       
     } 
     
 });
@@ -53,3 +56,8 @@ containerDiv.addEventListener("mouseout", (event) =>{
     } 
 });
 drawDivs();
+function randColor(){
+    
+    let color = Math.floor(Math.random()* 256);
+    return color;
+}
